@@ -167,3 +167,8 @@ table {
 .vanish {
   display: flex;
 }
+
+#stats{
+  max-height: 400px;
+  overflow-y: scroll;
+}

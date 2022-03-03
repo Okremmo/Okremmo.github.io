@@ -85,10 +85,12 @@ const mediumFrequency = document.getElementById('medium');
 const smallFrequency = document.getElementById('slow');
 
 const ukLanguage = document.getElementById('uk');
+const esLanguage = document.getElementById('es');
 const enLanguage = document.getElementById('en');
 const ruLanguage = document.getElementById('ru');
 
 const ukContent = document.querySelectorAll('.uk');
+const esContent = document.querySelectorAll('.es');
 const enContent = document.querySelectorAll('.en');
 const ruContent = document.querySelectorAll('.ru');
 
@@ -241,16 +243,25 @@ smallFrequency.addEventListener('click', () => {
 
 ukLanguage.addEventListener('click', () => {
   ukContent.forEach((el) => el.removeAttribute('hidden'));
+  esContent.forEach((el) => el.setAttribute('hidden', true));
+  enContent.forEach((el) => el.setAttribute('hidden', true));
+  ruContent.forEach((el) => el.setAttribute('hidden', true));
+});
+esLanguage.addEventListener('click', () => {
+  ukContent.forEach((el) => el.setAttribute('hidden', true));
+  esContent.forEach((el) => el.removeAttribute('hidden'));
   enContent.forEach((el) => el.setAttribute('hidden', true));
   ruContent.forEach((el) => el.setAttribute('hidden', true));
 });
 enLanguage.addEventListener('click', () => {
   ukContent.forEach((el) => el.setAttribute('hidden', true));
+  esContent.forEach((el) => el.setAttribute('hidden', true));
   enContent.forEach((el) => el.removeAttribute('hidden'));
   ruContent.forEach((el) => el.setAttribute('hidden', true));
 });
 ruLanguage.addEventListener('click', () => {
   ukContent.forEach((el) => el.setAttribute('hidden', true));
+  esContent.forEach((el) => el.setAttribute('hidden', true));
   enContent.forEach((el) => el.setAttribute('hidden', true));
   ruContent.forEach((el) => el.removeAttribute('hidden'));
 });

